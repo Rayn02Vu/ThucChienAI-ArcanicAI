@@ -1,4 +1,4 @@
-import os, dotenv, datetime, requests, base64, datetime
+import os, dotenv, datetime, base64
 from io import BytesIO
 from PIL import Image
 from google import genai
@@ -8,9 +8,10 @@ dotenv.load_dotenv()
 os.makedirs("data", exist_ok=True)
 os.makedirs("content", exist_ok=True)
 
-
 budget = 50.00
+
 base_url = "https://api.thucchien.ai"
+
 api_key = os.getenv("API_KEY")
 
 headers = {
@@ -20,10 +21,10 @@ headers = {
 
 client = genai.Client(
     api_key = api_key,
-    http_options={"base_url": base_url}
+    http_options = {"base_url": base_url}
 )
 
-def get_prompt(label: str = "Promtp: "):
+def get_prompt(label: str = "Prompt: "):
     prompt = input(label)
     if prompt.startswith("content"):
         with open(prompt, "r", encoding="utf-8") as f:
